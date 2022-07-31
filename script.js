@@ -7,13 +7,26 @@ function updateValue(e) {
   return message;
 }
 
-var key; // example: qwertyuiopasdfghjklzxcvbnm
+var key = 'qwertyuiopasdfghjklzxcvbnm';
 document.getElementById("key").addEventListener('change', changeKey);
 function changeKey(e) {
   key = e.target.value;
   console.log(key);
   return key;
 }
+
+
+document.getElementById('randomize').addEventListener("click", function() {
+  shuffle = str => [...str].sort(() => Math.random() - .5).join('');
+
+  key = shuffle(key);
+  console.log('You selected: ', this.value);
+  console.log(key)
+
+  //outputs 
+  document.getElementsByName('key')[0].placeholder = key;
+
+});
 
 var direction;
 document.getElementById('my-select').addEventListener('change', function() {
@@ -65,7 +78,10 @@ function qwertyquote(message, key, direction) {
     // If anything else its uppercase
     cypher += alphakey2[alphakey2.indexOf(message[i]) + 26];
   }
+
   console.log(cypher);
+
   document.getElementById('new').innerHTML = cypher;
+  document.getElementById('displayKey').innerHTML = key;
 
 }
